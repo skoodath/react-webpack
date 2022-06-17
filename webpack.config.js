@@ -1,5 +1,6 @@
 const path = require("path")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
+
 module.exports = {
   mode: "development",
   entry: path.join(__dirname, "src", "index.js"),
@@ -9,7 +10,7 @@ module.exports = {
   module:{
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader:"babel-loader",
@@ -19,10 +20,29 @@ module.exports = {
         }
       },
       {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"]
+        test: /\.s[ac]ss$/i,
+        use: [
+          {
+            loader: "style-loader"
+          }, 
+          {
+            loader: "css-loader"
+          }, 
+          {
+            loader: "resolve-url-loader"
+          }, 
+          {
+            loader: "sass-loader", 
+            options: {
+              sourceMap: true,
+            }
+          }
+        ]
       }
     ]
+  },
+  resolve: {
+    extensions: ['', '.js', '.jsx'],
   },
   plugins: [
     new HTMLWebpackPlugin({

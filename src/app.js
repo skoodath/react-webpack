@@ -1,19 +1,14 @@
 import React, {useState} from "react";
-import "./style.css";
+import AboutComponent from "./components/about/AboutComponent";
+import HeroComponent from "./components/hero/HeroComponent";
+import "./style.scss";
 
 const App = () => {
   const [count, setCount] = useState(0)
   return (
     <>
-      <h1 className="counter_heading">Count {count}</h1>
-      <button 
-        onClick={() => 
-          setCount(preCount => preCount + 1)
-          } 
-          className="counter_button"
-          >
-          +
-        </button>
+      <HeroComponent />
+      <AboutComponent />
     </>
   )
 }
